@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Build') {
+            steps {
+                bat 'mvnw.cmd clean package -DskipTests'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t student-app .'
+            }
+        }
+    }
+}
