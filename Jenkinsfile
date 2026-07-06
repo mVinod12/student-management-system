@@ -5,13 +5,14 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvnw.cmd clean package -DskipTests'
+                sh 'chmod +x mvnw'
+                sh './mvnw clean package -DskipTests'
             }
         }
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t student-app .'
+                sh 'docker build -t student-app .'
             }
         }
     }
